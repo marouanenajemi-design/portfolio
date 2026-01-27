@@ -236,30 +236,51 @@ body.dark .skill i {
 
 .carousel {
   position: relative;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.carousel-viewport {
   overflow: hidden;
-  max-width: 100%;
+  padding: 20px 0;
 }
 
 .carousel-track {
   display: flex;
+  gap: 30px;
   transition: transform 0.5s ease;
 }
 
+/* BIGGER & CLEANER CARDS */
 .project-card {
-  min-width: 300px;
-  margin: 0 15px;
+  min-width: 380px;
   background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-  padding: 15px;
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  padding: 20px;
   text-align: center;
 }
 
+/* IMAGE BIGGER */
 .project-card img {
   width: 100%;
-  border-radius: 8px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
 }
 
+/* TITLES */
+.project-card h3 {
+  margin: 15px 0 5px;
+  font-size: 20px;
+}
+
+.project-card p {
+  font-size: 15px;
+  color: #666;
+}
+
+/* BUTTONS FIXED */
 .carousel-btn {
   position: absolute;
   top: 50%;
@@ -267,18 +288,21 @@ body.dark .skill i {
   background: #000;
   color: #fff;
   border: none;
-  padding: 12px;
-  cursor: pointer;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
 }
 
 .carousel-btn.prev {
-  left: 25px;
+  left: -60px;
 }
 
 .carousel-btn.next {
-  right: 25px;
+  right: -60px;
 }
+
 
 
   </style>
@@ -370,8 +394,17 @@ body.dark .skill i {
       
     </div>
 
-    <button class="carousel-btn next">&#10095;</button>
+<div class="carousel">
+  <button class="carousel-btn prev">&#10094;</button>
+
+  <div class="carousel-viewport">
+    <div class="carousel-track">
+      <!-- project cards here -->
+    </div>
   </div>
+
+  <button class="carousel-btn next">&#10095;</button>
+</div>
 </section>
 
 
@@ -432,28 +465,24 @@ body.dark .skill i {
     revealOnScroll();
 
 
-      const track = document.querySelector('.carousel-track');
-  const nextBtn = document.querySelector('.carousel-btn.next');
-  const prevBtn = document.querySelector('.carousel-btn.prev');
+const track = document.querySelector('.carousel-track');
+const nextBtn = document.querySelector('.carousel-btn.next');
+const prevBtn = document.querySelector('.carousel-btn.prev');
 
-  let index = 0;
-  const cardWidth = 330; // card + margin
+let index = 0;
+const cardWidth = 410; // card + gap
 
-  nextBtn.addEventListener('click', () => {
-    index++;
-    if (index > track.children.length - 1) {
-      index = 0;
-    }
-    track.style.transform = `translateX(-${index * cardWidth}px)`;
-  });
+nextBtn.addEventListener('click', () => {
+  index++;
+  if (index > track.children.length - 1) index = 0;
+  track.style.transform = `translateX(-${index * cardWidth}px)`;
+});
 
-  prevBtn.addEventListener('click', () => {
-    index--;
-    if (index < 0) {
-      index = track.children.length - 1;
-    }
-    track.style.transform = `translateX(-${index * cardWidth}px)`;
-  });
+prevBtn.addEventListener('click', () => {
+  index--;
+  if (index < 0) index = track.children.length - 1;
+  track.style.transform = `translateX(-${index * cardWidth}px)`;
+});
   </script>
 
 </body>
