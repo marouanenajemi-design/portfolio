@@ -234,31 +234,25 @@ body.dark .skill i {
       }
     }
 
-    .projects {
-  padding: 60px 10%;
+.carousel {
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
 }
 
-.projects h2 {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
 }
 
 .project-card {
+  min-width: 300px;
+  margin: 0 15px;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.08);
   padding: 15px;
-  transition: transform 0.3s;
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
+  text-align: center;
 }
 
 .project-card img {
@@ -266,22 +260,26 @@ body.dark .skill i {
   border-radius: 8px;
 }
 
-.project-card h3 {
-  margin: 15px 0 5px;
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 50%;
 }
 
-.project-card span {
-  font-size: 14px;
-  color: #777;
+.carousel-btn.prev {
+  left: 10px;
 }
 
-.project-links a {
-  display: inline-block;
-  margin-top: 10px;
-  color: #007bff;
-  text-decoration: none;
-  font-weight: 600;
+.carousel-btn.next {
+  right: 10px;
 }
+
 
   </style>
 </head>
@@ -342,43 +340,40 @@ body.dark .skill i {
   </div>
 </section>
 
-  <section id="wordpress-projects" class="projects">
+<section id="wordpress-projects" class="projects">
   <h2>WordPress Projects</h2>
 
-  <div class="projects-grid">
+  <div class="carousel">
+    <button class="carousel-btn prev">&#10094;</button>
 
-    <div class="project-card">
-      <img src="images/project1.jpg" alt="WordPress Website">
-      <h3>Business Website</h3>
-      <p>Modern business website built with WordPress & Elementor.</p>
-      <span>WordPress • Elementor</span>
-      <div class="project-links">
-        <a href="https://demo-link.com" target="_blank">Live Demo</a>
+    <div class="carousel-track">
+
+      <div class="project-card">
+        <img src="images/wp1.jpg" alt="WordPress Project">
+        <h3>Business Website</h3>
+        <p>WordPress & Elementor</p>
       </div>
+
+      <div class="project-card">
+        <img src="images/wp2.jpg" alt="WordPress Project">
+        <h3>E-commerce Store</h3>
+        <p>WooCommerce</p>
+      </div>
+
+      <div class="project-card">
+        <img src="images/wp3.jpg" alt="WordPress Project">
+        <h3>Landing Page</h3>
+        <p>WordPress</p>
+      </div>
+
+      <!-- ADD MORE PROJECT DIVS HERE -->
+      
     </div>
 
-    <div class="project-card">
-      <img src="images/project2.jpg" alt="E-commerce Website">
-      <h3>E-commerce Store</h3>
-      <p>Online shop using WooCommerce with payment integration.</p>
-      <span>WordPress • WooCommerce</span>
-      <div class="project-links">
-        <a href="https://demo-link.com" target="_blank">Live Demo</a>
-      </div>
-    </div>
-
-        <div class="project-card">
-      <img src="images/project2.jpg" alt="E-commerce Website">
-      <h3>E-commerce Store</h3>
-      <p>Online shop using WooCommerce with payment integration.</p>
-      <span>WordPress • WooCommerce</span>
-      <div class="project-links">
-        <a href="https://demo-link.com" target="_blank">Live Demo</a>
-      </div>
-    </div>
-
+    <button class="carousel-btn next">&#10095;</button>
   </div>
 </section>
+
 
 
   <section class="reveal">
@@ -435,6 +430,30 @@ body.dark .skill i {
 
     window.addEventListener('scroll', revealOnScroll);
     revealOnScroll();
+
+
+      const track = document.querySelector('.carousel-track');
+  const nextBtn = document.querySelector('.carousel-btn.next');
+  const prevBtn = document.querySelector('.carousel-btn.prev');
+
+  let index = 0;
+  const cardWidth = 330; // card + margin
+
+  nextBtn.addEventListener('click', () => {
+    index++;
+    if (index > track.children.length - 1) {
+      index = 0;
+    }
+    track.style.transform = `translateX(-${index * cardWidth}px)`;
+  });
+
+  prevBtn.addEventListener('click', () => {
+    index--;
+    if (index < 0) {
+      index = track.children.length - 1;
+    }
+    track.style.transform = `translateX(-${index * cardWidth}px)`;
+  });
   </script>
 
 </body>
