@@ -234,6 +234,56 @@ body.dark .skill i {
       }
     }
 
+    .projects {
+  padding: 60px 10%;
+}
+
+.projects h2 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.project-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  padding: 15px;
+  transition: transform 0.3s;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.project-card h3 {
+  margin: 15px 0 5px;
+}
+
+.project-card span {
+  font-size: 14px;
+  color: #777;
+}
+
+.project-links a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+
 
   </style>
 </head>
@@ -294,35 +344,35 @@ body.dark .skill i {
   </div>
 </section>
 
-<section id="wordpress-projects" class="projects">
+
+  <section id="wordpress-projects" class="projects">
   <h2>WordPress Projects</h2>
 
-  <div class="carousel">
-    <button class="carousel-btn prev">&#10094;</button>
+  <div class="projects-grid">
 
-    <div class="carousel-track">
-
-      <div class="project-card">
-        <img src="images/wp1.jpg" alt="WordPress Project">
-        <h3>Business Website</h3>
-        <p>WordPress & Elementor</p>
+    <div class="project-card">
+      <img src="images/project1.jpg" alt="WordPress Website">
+      <h3>Business Website</h3>
+      <p>Modern business website built with WordPress & Elementor.</p>
+      <span>WordPress • Elementor</span>
+      <div class="project-links">
+        <a href="https://demo-link.com" target="_blank">Live Demo</a>
       </div>
-
-      <div class="project-card">
-        <img src="images/wp2.jpg" alt="WordPress Project">
-        <h3>E-commerce Store</h3>
-        <p>WooCommerce</p>
-      </div>
-
-      <div class="project-card">
-        <img src="images/wp3.jpg" alt="WordPress Project">
-        <h3>Landing Page</h3>
-        <p>WordPress</p>
-      </div>
-
-      <!-- ADD MORE PROJECT DIVS HERE -->
-      
     </div>
+
+    <div class="project-card">
+      <img src="images/project2.jpg" alt="E-commerce Website">
+      <h3>E-commerce Store</h3>
+      <p>Online shop using WooCommerce with payment integration.</p>
+      <span>WordPress • WooCommerce</span>
+      <div class="project-links">
+        <a href="https://demo-link.com" target="_blank">Live Demo</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 
 
 
