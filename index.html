@@ -313,10 +313,11 @@ header h1 {
     padding: 12px 18px;
   }
 
-  .logo {
-    height: 70px;
-  }
+.logo {
+  height: 80px;      /* Desktop size */
+  width: auto;
 }
+
 
 .top-bar {
   display: flex;
@@ -327,8 +328,17 @@ header h1 {
 }
 
 .logo {
-  height: 45px;
+  height: 80px;      /* Desktop size */
+  width: auto;
 }
+
+@media (max-width: 768px) {
+  .logo {
+    height: 60px;
+  }
+}
+
+
 
 .theme-toggle {
   background: transparent;
