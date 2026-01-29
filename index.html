@@ -314,28 +314,21 @@ header h1 {
   font-weight: 600;
 }
 
-/* TOP BAR */
 .top-bar {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* logo left, button right */
   align-items: center;
   padding: 15px 25px;
 }
 
-/* LOGO */
+/* LOGO LEFT */
 .logo {
   height: 45px;
+  display: block;
 }
 
-/* DARK MODE BUTTON */
-.theme-toggle {
-  background: none;
-  border: none;
-  font-size: 1.4rem;
-  cursor: pointer;
-}
 
-    @media (max-width: 768px) {
+@media (max-width: 768px) {
   .top-bar {
     padding: 12px 18px;
   }
@@ -345,15 +338,26 @@ header h1 {
   }
 }
 
-    .top-bar {
-  position: sticky;
-  top: 0;
-  z-index: 100;
+    /* DARK MODE */
+.dark-mode {
+  background-color: #0f172a;
+  color: #e5e7eb;
 }
+
+.dark-mode .card {
+  background-color: #1e293b;
+}
+
 
 
   </style>
 </head>
+
+<script>
+  function toggleTheme() {
+    document.body.classList.toggle("dark-mode");
+  }
+</script>
 
 <body>
 
@@ -364,6 +368,8 @@ header h1 {
     🌙 / ☀️
   </button>
 </header>
+
+
 
 
   <section class="about reveal">
