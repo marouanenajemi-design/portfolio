@@ -1,235 +1,523 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Marouane Najemi | Web Developer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.2/css/all.css">
-</head>
-
 
   <style>
-
-/* FIX HEADER ON MOBILE */
-@media (max-width: 768px) {
-  header {
-    padding-top: 60px; /* push title down under button */
-  }
-
-  header h1 {
-    font-size: 1.7rem;
-    line-height: 1.3;
-    color: white;
-  }
-
-  header h2 {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 600px) {
-  .about {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .about img {
-    margin: 0 auto; /* CENTER IMAGE */
-  }
-}
-
-    @media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    font-size: 0.9rem;
-  }
-}
-
     :root {
-  --primary: #2563eb;
-  --dark: #0f172a;
-  --gray: #64748b;
-  --bg: #f8fafc;
-  --card: #ffffff;
-}
-body.dark {
-  --bg: #020617;
-  --dark: #2563eb;
-  --gray: #94a3b8;
-  --card: #020617;
-}
-body {
-  background: var(--bg);
-  color: var(--dark);
-}
-
-body.dark .skill i {
-  color: #2563eb;
-}
-
-.skill:hover {
-  transform: translateY(-4px);
-  transition: 0.3s ease;
-}
-
-.skill {
-  color: var(--dark);
-  font-weight: 500;
-}
-.theme-toggle {
-  background: transparent;
-  border: 2px solid rgba(255,255,255,0.3);
-  color: white;
-  padding: 8px 12px;
-  border-radius: 50px;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-
-.theme-toggle:hover {
-  background: rgba(255,255,255,0.15);
-}
-
-    :root {
-      --primary: #2563eb;
-      --dark: #0f172a;
-      --gray: #64748b;
       --bg: #f8fafc;
+      --surface: rgba(255,255,255,0.75);
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --primary: #2563eb;
+      --primary-soft: rgba(37, 99, 235, 0.12);
+      --border: rgba(15, 23, 42, 0.08);
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --shadow-lg: 0 20px 60px rgba(15, 23, 42, 0.14);
+      --radius: 22px;
+      --radius-sm: 14px;
+      --container: 1180px;
+    }
+
+    body.dark {
+      --bg: #020617;
+      --surface: rgba(15, 23, 42, 0.72);
+      --card: #0f172a;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --primary: #60a5fa;
+      --primary-soft: rgba(96, 165, 250, 0.12);
+      --border: rgba(255,255,255,0.08);
+      --shadow: 0 10px 30px rgba(0,0,0,0.25);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.35);
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      background: var(--bg);
-      color: var(--dark);
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,0.10), transparent 28%),
+        radial-gradient(circle at top right, rgba(99,102,241,0.10), transparent 25%),
+        var(--bg);
+      color: var(--text);
       line-height: 1.6;
+      transition: background 0.3s ease, color 0.3s ease;
     }
 
-
-
-header h1 {
-  font-size: clamp(1.6rem, 5vw, 2.5rem);
-  margin-bottom: 10px;
-  color: white;
-}
-
-    header h2 {
-      font-size: 1.2rem;
-      font-weight: 400;
-      color: #c7d2fe;
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
-    section {
-      max-width: 900px;
-      margin: 80px auto;
-      padding: 0 20px;
+    img {
+      max-width: 100%;
+      display: block;
     }
 
-    .about {
-      display: grid;
-      grid-template-columns: 150px 1fr;
-      gap: 30px;
+    .container {
+      width: min(var(--container), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 90px 0;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 14px;
+      letter-spacing: -0.03em;
+    }
+
+    .section-subtitle {
+      max-width: 680px;
+      margin: 0 auto 48px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      background: rgba(255,255,255,0.65);
+      border-bottom: 1px solid var(--border);
+    }
+
+    body.dark .navbar {
+      background: rgba(2,6,23,0.7);
+    }
+
+    .nav-inner {
+      min-height: 76px;
+      display: flex;
       align-items: center;
+      justify-content: space-between;
+      gap: 20px;
     }
 
-    .about img {
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
+    .brand {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .brand span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .theme-toggle {
+      width: 46px;
+      height: 46px;
       border-radius: 50%;
-      border: 4px solid var(--primary);
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease;
     }
 
-    .about p {
-      color: var(--gray);
+    .theme-toggle:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 80px 0 60px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 24px;
+      border: 1px solid rgba(37, 99, 235, 0.15);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 4.5rem);
+      line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 640px;
+      font-size: 1.05rem;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 30px;
     }
 
     .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border-radius: 14px;
+      font-weight: 600;
+      transition: all 0.25s ease;
+    }
+
+    .btn-primary {
       background: var(--primary);
       color: white;
-      text-decoration: none;
-      border-radius: 6px;
-      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 14px 30px rgba(37,99,235,0.28);
     }
 
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(37,99,235,0.3);
+    .btn-primary:hover {
+      transform: translateY(-3px);
     }
 
-    .skill {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+    .btn-secondary {
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      box-shadow: var(--shadow);
+    }
 
-.skill:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-}
+    .btn-secondary:hover {
+      transform: translateY(-3px);
+    }
 
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
 
+    .meta-box {
+      padding: 14px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      min-width: 150px;
+    }
 
-    .skills {
+    .meta-box strong {
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+
+    .meta-box span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .hero-card {
+      position: relative;
+      background: linear-gradient(180deg, rgba(37,99,235,0.12), transparent), var(--card);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 26px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .profile-card {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .profile-image-wrap {
+      border-radius: 24px;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(37,99,235,0.18), rgba(99,102,241,0.10));
+      padding: 10px;
+    }
+
+    .profile-image-wrap img {
+      width: 100%;
+      border-radius: 18px;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+
+    .mini-info {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      margin-top: 40px;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
     }
 
-    .skill {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    .mini-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .mini-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+    }
+
+    .mini-card strong {
+      font-size: 0.98rem;
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .glass-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      padding: 28px;
+      backdrop-filter: blur(10px);
+    }
+
+    .glass-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 14px;
+    }
+
+    .glass-card p {
+      color: var(--muted);
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px;
+    }
+
+    .skill-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px 18px;
       text-align: center;
+      box-shadow: var(--shadow);
+      transition: 0.25s ease;
     }
 
-    .skill i {
+    .skill-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .skill-card i {
       font-size: 2rem;
       color: var(--primary);
+      margin-bottom: 14px;
+    }
+
+    .skill-card h4 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .skill-card p {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .project-image {
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      background: #e2e8f0;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.45s ease;
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.05);
+    }
+
+    .project-content {
+      padding: 22px;
+    }
+
+    .project-tag {
+      display: inline-block;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-size: 0.84rem;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .project-content h3 {
       margin-bottom: 10px;
+      font-size: 1.15rem;
+    }
+
+    .project-content p {
+      color: var(--muted);
+      margin-bottom: 16px;
+      font-size: 0.96rem;
+    }
+
+    .project-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .project-stack {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .project-link {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* Contact / socials */
+    .contact-box {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      margin: 16px 0 28px;
     }
 
     .socials {
       display: flex;
       justify-content: center;
-      gap: 25px;
-      margin-top: 40px;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 24px;
     }
 
     .socials a {
-      font-size: 1.5rem;
-      color: var(--dark);
-      transition: color 0.2s, transform 0.2s;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      font-size: 1.2rem;
+      transition: 0.25s ease;
     }
 
     .socials a:hover {
+      transform: translateY(-4px);
       color: var(--primary);
-      transform: scale(1.2);
     }
 
     footer {
+      padding: 28px 0 40px;
       text-align: center;
-      padding: 30px 20px;
-      color: var(--gray);
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
     }
 
-    /* Animations */
+    /* Reveal animation */
     .reveal {
       opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.6s ease;
+      transform: translateY(35px);
+      transition: 0.7s ease;
     }
 
     .reveal.active {
@@ -237,286 +525,369 @@ header h1 {
       transform: translateY(0);
     }
 
-    @media (max-width: 600px) {
-      .about {
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero-grid,
+      .about-grid {
         grid-template-columns: 1fr;
-        text-align: center;
+      }
+
+      .hero {
+        padding-top: 50px;
+      }
+
+      .hero-card {
+        max-width: 560px;
       }
     }
 
-    .projects {
-  padding: 60px 10%;
-}
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
 
-.projects h2 {
-  text-align: center;
-  margin-bottom: 40px;
-}
+      .section {
+        padding: 72px 0;
+      }
 
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-}
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
 
-.project-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-  padding: 15px;
-  transition: transform 0.3s;
-}
+      .btn {
+        width: 100%;
+      }
 
-.project-card:hover {
-  transform: translateY(-5px);
-}
+      .mini-info {
+        grid-template-columns: 1fr;
+      }
 
-.project-card img {
-  width: 100%;
-  border-radius: 8px;
-}
+      .meta-box {
+        width: 100%;
+      }
+    }
 
-.project-card h3 {
-  margin: 15px 0 5px;
-}
+    @media (max-width: 520px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
 
-.project-card span {
-  font-size: 14px;
-  color: #777;
-}
+      .section-title {
+        font-size: 1.7rem;
+      }
 
-.project-links a {
-  display: inline-block;
-  margin-top: 10px;
-  color: #007bff;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.top-bar {
-  position: sticky;  
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  background: linear-gradient(135deg, #1e293b, #0f172a);
-
-  padding: 15px 25px;
-  min-height: 90px;   /* ✅ IMPORTANT */
-}
-
-
-/* LOGO LEFT */
-.logo {
-  height: 80px;      /* Desktop size */
-  width: auto;
-}
-
-
-@media (max-width: 768px) {
-  .top-bar {
-    padding: 12px 18px;
-  }
-
-.logo {
-  height: 80px;      /* Desktop size */
-  width: auto;
-}
-
-
-.top-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: linear-gradient(135deg, #1e293b, #0f172a);
-  padding: 15px 25px;
-}
-
-.logo {
-  height: 80px;      /* Desktop size */
-  width: auto;
-}
-
-
-.theme-toggle {
-  background: transparent;
-  border: 2px solid rgba(255,255,255,0.3);
-  color: white;
-  padding: 8px 12px;
-  border-radius: 50px;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-
-
-
+      .glass-card,
+      .project-content,
+      .hero-card {
+        padding: 20px;
+      }
+    }
   </style>
 </head>
-
 <body>
 
-<header class="top-bar">
-  <h1>
-   M.Najemi
-  </h1>
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="brand">M<span>.</span>Najemi</a>
 
-  <button id="theme-toggle" class="theme-toggle">
-    <i class="fa-solid fa-moon"></i>
-  </button>
-</header>
-
-
-
-
-  <section class="about reveal">
-    <img src="mr.jpg" alt="Marouane Najemi">
-    <div>
-      <p>
-        I'm a web developer with a strong interest in building clean, efficient, and user‑friendly applications.
-        I work with HTML, CSS, JavaScript, WordPress, and Ruby on Rails. I enjoy transforming ideas into real digital
-        solutions and continuously improving my technical skills.
-      </p>
-      <a class="btn" href="https://wa.me/212614705500" target="_blank">Contact Me</a>
-    </div>
-  </section>
-
-<section class="reveal">
-  <h2 style="text-align:center; margin-bottom:30px;">Skills</h2>
-  <div class="skills">
-
-    <div class="skill">
-      <i class="fa-brands fa-html5"></i>
-      <p>HTML & CSS</p>
-    </div>
-
-    <div class="skill">
-      <i class="fa-brands fa-js"></i>
-      <p>JavaScript</p>
-    </div>
-
-    <div class="skill">
-      <i class="fa-brands fa-bootstrap"></i>
-      <p>Bootstrap</p>
-    </div>
-
-    <div class="skill">
-      <i class="fa-brands fa-figma"></i>
-      <p>Figma</p>
-    </div>
-
-    <div class="skill">
-      <i class="fa-brands fa-wordpress"></i>
-      <p>WordPress</p>
-    </div>
-
-    <div class="skill">
-      <i class="fa-solid fa-gem"></i>
-      <p>Ruby on Rails</p>
-    </div>
-
-  </div>
-</section>
-
-
-  <section id="wordpress-projects" class="projects">
-  <h2>WordPress Projects</h2>
-
-  <div class="projects-grid">
-
-    <div class="project-card">
-      <img src="azbabycare.png" alt="E-commerce Website">
-      <h3>E-commerce Website</h3>
-      <p>Modern business website built with WordPress & Elementor.</p>
-      <span>WordPress • Elementor</span>
-      <div class="project-links">
-        <a href="https://azbabycare.ma/" target="_blank">Live Demo</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
       </div>
-    </div>
 
-    <div class="project-card">
-      <img src="oimaroc.png" alt="E-commerce Website">
-      <h3>E-commerce Store</h3>
-      <p>Online shop using WooCommerce Built with Elementor.</p>
-      <span>WordPress • WooCommerce</span>
-      <div class="project-links">
-        <a href="https://oimaroc.com/" target="_blank">Live Demo</a>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="reveal active">
+          <div class="hero-badge">
+            <i class="fa-solid fa-code"></i>
+            Web Developer • WordPress • Rails
+          </div>
+
+          <h1>
+            I build <span>clean</span>, modern and high-converting websites.
+          </h1>
+
+          <p>
+            I'm Marouane Najemi, a web developer focused on creating fast, professional,
+            and user-friendly digital experiences with WordPress, HTML, CSS, JavaScript,
+            and Ruby on Rails.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://wa.me/212614705500" target="_blank">
+              <i class="fa-brands fa-whatsapp"></i>
+              Contact Me
+            </a>
+            <a class="btn btn-secondary" href="#projects">
+              <i class="fa-solid fa-briefcase"></i>
+              View Projects
+            </a>
+          </div>
+
+          <div class="hero-meta">
+            <div class="meta-box">
+              <strong>4+ Years</strong>
+              <span>Design & web experience</span>
+            </div>
+            <div class="meta-box">
+              <strong>WordPress</strong>
+              <span>Elementor & WooCommerce</span>
+            </div>
+            <div class="meta-box">
+              <strong>Frontend</strong>
+              <span>HTML, CSS, JavaScript</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card reveal">
+          <div class="profile-card">
+            <div class="profile-image-wrap">
+              <img src="mr.jpg" alt="Marouane Najemi">
+            </div>
+
+            <div class="mini-info">
+              <div class="mini-card">
+                <p>Speciality</p>
+                <strong>Professional Websites</strong>
+              </div>
+              <div class="mini-card">
+                <p>Focus</p>
+                <strong>UI, Speed & Conversion</strong>
+              </div>
+              <div class="mini-card">
+                <p>Main Stack</p>
+                <strong>WordPress / Rails</strong>
+              </div>
+              <div class="mini-card">
+                <p>Availability</p>
+                <strong>Freelance Projects</strong>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
 
-        <div class="project-card">
-      <img src="cosmitc.png" alt="E-commerce Website">
-      <h3>E-commerce Website</h3>
-      <p>Modern business website built with WordPress & Elementor.</p>
-      <span>WordPress • Elementor</span>
-      <div class="project-links">
-        <a href="https://www.cos-mell.ma/" target="_blank">Live Demo</a>
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section-title reveal">About Me</h2>
+        <p class="section-subtitle reveal">
+          I help brands, businesses, and entrepreneurs turn ideas into polished digital products.
+        </p>
+
+        <div class="about-grid">
+          <div class="glass-card reveal">
+            <h3>Who I Am</h3>
+            <p>
+              I'm a web developer with strong experience in WordPress, Elementor,
+              HTML, CSS, JavaScript, and Ruby on Rails. I enjoy building modern interfaces
+              that look premium and feel easy to use.
+            </p>
+          </div>
+
+          <div class="glass-card reveal">
+            <h3>What I Do</h3>
+            <p>
+              I create business websites, e-commerce stores, landing pages, and custom web
+              solutions with a focus on clean UI, responsive design, and performance.
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
 
-            <div class="project-card">
-      <img src="recitelive.png" alt="E-commerce Website">
-      <h3>RecetteFacile.live</h3>
-      <p>WordPress Blog for Easy & Tasty Recipes</p>
-      <span>WordPress • Blog • Recipes</span>
-      <div class="project-links">
-        <a href="https://recettefacile.live//" target="_blank">Live Demo</a>
+    <section id="skills" class="section">
+      <div class="container">
+        <h2 class="section-title reveal">Skills & Tools</h2>
+        <p class="section-subtitle reveal">
+          Technologies and platforms I use to build reliable and modern websites.
+        </p>
+
+        <div class="skills-grid">
+          <div class="skill-card reveal">
+            <i class="fa-brands fa-html5"></i>
+            <h4>HTML & CSS</h4>
+            <p>Clean, responsive and structured frontend development.</p>
+          </div>
+
+          <div class="skill-card reveal">
+            <i class="fa-brands fa-js"></i>
+            <h4>JavaScript</h4>
+            <p>Interactive experiences and dynamic frontend behavior.</p>
+          </div>
+
+          <div class="skill-card reveal">
+            <i class="fa-brands fa-bootstrap"></i>
+            <h4>Bootstrap</h4>
+            <p>Fast and responsive layouts with modern UI components.</p>
+          </div>
+
+          <div class="skill-card reveal">
+            <i class="fa-brands fa-figma"></i>
+            <h4>Figma</h4>
+            <p>UI inspiration, structure planning and visual design ideas.</p>
+          </div>
+
+          <div class="skill-card reveal">
+            <i class="fa-brands fa-wordpress"></i>
+            <h4>WordPress</h4>
+            <p>Business websites, blogs, landing pages and WooCommerce.</p>
+          </div>
+
+          <div class="skill-card reveal">
+            <i class="fa-solid fa-gem"></i>
+            <h4>Ruby on Rails</h4>
+            <p>Building custom web apps and SaaS-style platforms.</p>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
 
-  </div>
-</section>
+    <section id="projects" class="section">
+      <div class="container">
+        <h2 class="section-title reveal">Featured Projects</h2>
+        <p class="section-subtitle reveal">
+          A selection of websites I've built for businesses, e-commerce and content platforms.
+        </p>
 
+        <div class="projects-grid">
+          <article class="project-card reveal">
+            <div class="project-image">
+              <img src="azbabycare.png" alt="AZ Baby Care project">
+            </div>
+            <div class="project-content">
+              <span class="project-tag">Business Website</span>
+              <h3>AZ Baby Care</h3>
+              <p>Modern WordPress website built for a professional and trustworthy brand presence.</p>
+              <div class="project-footer">
+                <span class="project-stack">WordPress • Elementor</span>
+                <a class="project-link" href="https://azbabycare.ma/" target="_blank">Live Demo</a>
+              </div>
+            </div>
+          </article>
 
+          <article class="project-card reveal">
+            <div class="project-image">
+              <img src="oimaroc.png" alt="Oi Maroc store project">
+            </div>
+            <div class="project-content">
+              <span class="project-tag">E-commerce</span>
+              <h3>Oi Maroc</h3>
+              <p>Online store experience designed for product presentation and WooCommerce sales flow.</p>
+              <div class="project-footer">
+                <span class="project-stack">WordPress • WooCommerce</span>
+                <a class="project-link" href="https://oimaroc.com/" target="_blank">Live Demo</a>
+              </div>
+            </div>
+          </article>
 
+          <article class="project-card reveal">
+            <div class="project-image">
+              <img src="cosmitc.png" alt="Cos Mell project">
+            </div>
+            <div class="project-content">
+              <span class="project-tag">Brand Website</span>
+              <h3>Cos Mell</h3>
+              <p>Elegant business website with a clean visual style and professional structure.</p>
+              <div class="project-footer">
+                <span class="project-stack">WordPress • Elementor</span>
+                <a class="project-link" href="https://www.cos-mell.ma/" target="_blank">Live Demo</a>
+              </div>
+            </div>
+          </article>
 
-  <section class="reveal">
-    <h2 style="text-align:center;">Find me online</h2>
-    <div class="socials">
-      <a href="https://web.facebook.com/marwane.najemi/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+          <article class="project-card reveal">
+            <div class="project-image">
+              <img src="recitelive.png" alt="Recette Facile project">
+            </div>
+            <div class="project-content">
+              <span class="project-tag">Content Platform</span>
+              <h3>RecetteFacile.live</h3>
+              <p>Recipe blog built for readable content, category browsing and user-friendly experience.</p>
+              <div class="project-footer">
+                <span class="project-stack">WordPress • Blog</span>
+                <a class="project-link" href="https://recettefacile.live/" target="_blank">Live Demo</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-      <a href="https://github.com/marouanenajemi-design" target="_blank"><i class="fa-brands fa-github"></i></a>
-      <a href="https://linkedin.com" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-    </div>
-  </section>
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="glass-card contact-box reveal">
+          <h2 class="section-title" style="margin-bottom: 0;">Let’s Work Together</h2>
+          <p>
+            Need a professional website, landing page, e-commerce store, or custom web solution?
+            Let’s discuss your project.
+          </p>
+
+          <a class="btn btn-primary" href="https://wa.me/212614705500" target="_blank">
+            <i class="fa-brands fa-whatsapp"></i>
+            Start a Conversation
+          </a>
+
+          <div class="socials">
+            <a href="https://web.facebook.com/marwane.najemi/" target="_blank" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://github.com/marouanenajemi-design" target="_blank" aria-label="GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    © 2026 · Marouane Najemi
+    © 2026 · Marouane Najemi · All rights reserved.
   </footer>
 
   <script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const icon = toggleBtn.querySelector('i');
 
-
-
-  const toggleBtn = document.getElementById('theme-toggle');
-  const icon = toggleBtn.querySelector('i');
-
-  // Load saved theme
-  if (localStorage.getItem('theme') === 'dark') {
-    document.body.classList.add('dark');
-    icon.classList.replace('fa-moon', 'fa-sun');
-  }
-
-  toggleBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-
-    if (document.body.classList.contains('dark')) {
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark');
       icon.classList.replace('fa-moon', 'fa-sun');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      icon.classList.replace('fa-sun', 'fa-moon');
-      localStorage.setItem('theme', 'light');
     }
-  });
 
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+
+      if (document.body.classList.contains('dark')) {
+        icon.classList.replace('fa-moon', 'fa-sun');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        icon.classList.replace('fa-sun', 'fa-moon');
+        localStorage.setItem('theme', 'light');
+      }
+    });
 
     const reveals = document.querySelectorAll('.reveal');
 
     const revealOnScroll = () => {
-      const windowHeight = window.innerHeight;
+      const triggerBottom = window.innerHeight - 80;
+
       reveals.forEach(el => {
         const top = el.getBoundingClientRect().top;
-        if (top < windowHeight - 100) {
+        if (top < triggerBottom) {
           el.classList.add('active');
         }
       });
@@ -524,12 +895,6 @@ header h1 {
 
     window.addEventListener('scroll', revealOnScroll);
     revealOnScroll();
-
   </script>
-
-</body>
-</html>
-
-
 </body>
 </html>
