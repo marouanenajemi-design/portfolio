@@ -3,898 +3,1722 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Marouane Najemi | Web Developer</title>
+  <title>Marouane Najemi | Junior Full Stack Developer & WordPress Developer</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.2/css/all.css">
 
   <style>
-    :root {
-      --bg: #f8fafc;
-      --surface: rgba(255,255,255,0.75);
-      --card: #ffffff;
-      --text: #0f172a;
-      --muted: #64748b;
-      --primary: #2563eb;
-      --primary-soft: rgba(37, 99, 235, 0.12);
-      --border: rgba(15, 23, 42, 0.08);
-      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-      --shadow-lg: 0 20px 60px rgba(15, 23, 42, 0.14);
-      --radius: 22px;
-      --radius-sm: 14px;
-      --container: 1180px;
+    :root{
+      --white:#ffffff;
+      --text:#0f172a;
+      --muted:#64748b;
+      --border:#e2e8f0;
+      --primary:#2563eb;
+      --primary-2:#60a5fa;
+      --soft:#eff6ff;
+      --soft-bg:#f8fbff;
+      --dark:#0b1220;
+      --success:#16a34a;
+      --shadow:0 24px 70px rgba(15,23,42,.10);
+      --shadow-soft:0 12px 32px rgba(15,23,42,.06);
+      --radius:24px;
+      --nav-bg:rgba(255,255,255,.82);
+      --hero-bg:linear-gradient(180deg,#f8fbff 0%,#ffffff 58%,#ffffff 100%);
+      --card-bg:#ffffff;
+      --card-grad:linear-gradient(180deg,#ffffff,#f8fbff);
+      --footer-bg:#0f172a;
+      --footer-text:rgba(255,255,255,.72);
+      --footer-sub:rgba(255,255,255,.62);
+      --footer-bottom:rgba(255,255,255,.56);
+      --social-bg:rgba(255,255,255,.08);
+      --social-border:rgba(255,255,255,.14);
+    }
+
+    body.dark{
+      --white:#020617;
+      --text:#f8fafc;
+      --muted:#94a3b8;
+      --border:#1e293b;
+      --primary:#60a5fa;
+      --primary-2:#3b82f6;
+      --soft:#0f1c33;
+      --soft-bg:#081120;
+      --dark:#020617;
+      --shadow:0 24px 70px rgba(0,0,0,.35);
+      --shadow-soft:0 12px 32px rgba(0,0,0,.25);
+      --nav-bg:rgba(2,6,23,.82);
+      --hero-bg:linear-gradient(180deg,#081120 0%,#020617 58%,#020617 100%);
+      --card-bg:#0f172a;
+      --card-grad:linear-gradient(180deg,#0f172a,#0b1324);
+      --footer-bg:#020617;
+      --footer-text:rgba(255,255,255,.74);
+      --footer-sub:rgba(255,255,255,.62);
+      --footer-bottom:rgba(255,255,255,.56);
+      --social-bg:rgba(255,255,255,.05);
+      --social-border:rgba(255,255,255,.10);
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:Inter,system-ui,sans-serif;
+      background:var(--white);
+      color:var(--text);
+      overflow-x:hidden;
+      transition:background .3s ease,color .3s ease;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+      height:auto;
+    }
+
+    .page{
+      overflow-x:hidden;
+    }
+
+    .container{
+      max-width:1260px;
+      margin:0 auto;
+      padding:0 20px;
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(40px);
+      transition:opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.active{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .navbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:var(--nav-bg);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(226,232,240,.18);
+    }
+
+    body.dark .navbar{
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+
+    .nav-inner{
+      min-height:84px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0;
+    }
+
+    .brand-logo{
+      width:48px;
+      height:48px;
+      border-radius:16px;
+      background:linear-gradient(135deg,var(--primary),var(--primary-2));
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.2rem;
+      font-weight:900;
+      box-shadow:0 14px 28px rgba(37,99,235,.24);
+      flex-shrink:0;
+    }
+
+    .brand-title{
+      display:block;
+      font-size:1.12rem;
+      font-weight:900;
+      line-height:1;
+    }
+
+    .brand-sub{
+      display:block;
+      margin-top:4px;
+      color:var(--muted);
+      font-size:.78rem;
+      line-height:1.4;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:24px;
+    }
+
+    .nav-links a{
+      font-weight:600;
+      color:var(--text);
+      opacity:.85;
+      font-size:.95rem;
+      transition:.2s ease;
+    }
+
+    .nav-links a:hover{
+      color:var(--primary);
+      opacity:1;
+    }
+
+    .nav-actions{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+
+    .theme-toggle{
+      width:46px;
+      height:46px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:var(--card-bg);
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:.25s ease;
+      box-shadow:var(--shadow-soft);
+    }
+
+    .theme-toggle:hover{
+      transform:translateY(-2px);
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:14px 22px;
+      border-radius:14px;
+      font-weight:800;
+      border:1px solid transparent;
+      transition:.25s ease;
+      cursor:pointer;
+      text-align:center;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+    }
+
+    .btn-primary{
+      color:#fff;
+      background:linear-gradient(135deg,var(--primary),var(--primary-2));
+      box-shadow:0 16px 34px rgba(37,99,235,.22);
+    }
+
+    .btn-light{
+      background:var(--card-bg);
+      color:var(--text);
+      border-color:var(--border);
+    }
+
+    .btn-outline{
+      background:transparent;
+      color:var(--text);
+      border-color:var(--border);
+    }
+
+    .btn-light:hover,
+    .btn-outline:hover{
+      background:var(--soft-bg);
+    }
+
+    .menu-toggle{
+      display:none;
+      border:none;
+      background:transparent;
+      font-size:1.7rem;
+      cursor:pointer;
+      color:var(--text);
+    }
+
+    .mobile-menu{
+      display:none;
+      padding:12px 0 22px;
+      border-top:1px solid var(--border);
+    }
+
+    .mobile-menu a{
+      display:block;
+      padding:12px 0;
+      font-weight:600;
+      color:var(--text);
+      opacity:.9;
+    }
+
+    .mobile-actions{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      margin-top:14px;
+    }
+
+    .mobile-top-actions{
+      display:flex;
+      gap:12px;
+      margin-top:10px;
+      margin-bottom:8px;
+    }
+
+    .mobile-menu.open{
+      display:block;
+    }
+
+    .hero{
+      position:relative;
+      padding:100px 0 82px;
+      background:var(--hero-bg);
+    }
+
+    .gradient-orb{
+      position:absolute;
+      border-radius:999px;
+      filter:blur(70px);
+      opacity:.55;
+      pointer-events:none;
+      animation:orbFloat 7s ease-in-out infinite;
+    }
+
+    .orb-1{
+      width:360px;
+      height:360px;
+      background:rgba(59,130,246,.18);
+      top:-80px;
+      left:-100px;
+    }
+
+    .orb-2{
+      width:320px;
+      height:320px;
+      background:rgba(96,165,250,.16);
+      right:-60px;
+      top:100px;
+      animation-delay:1.5s;
+    }
+
+    @keyframes orbFloat{
+      0%,100%{transform:translateY(0px) translateX(0px)}
+      50%{transform:translateY(20px) translateX(10px)}
+    }
+
+    .grid-overlay{
+      position:absolute;
+      inset:0;
+      background-image:
+        linear-gradient(rgba(15,23,42,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15,23,42,.05) 1px, transparent 1px);
+      background-size:38px 38px;
+      mask-image:linear-gradient(to bottom, rgba(0,0,0,.2), transparent 75%);
+      pointer-events:none;
+    }
+
+    body.dark .grid-overlay{
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+    }
+
+    .hero-grid{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:1.02fr .98fr;
+      gap:52px;
+      align-items:center;
+    }
+
+    .badge,
+    .mini-badge{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 14px;
+      border-radius:999px;
+      background:var(--soft);
+      color:var(--primary);
+      border:1px solid rgba(96,165,250,.25);
+      font-size:.88rem;
+      font-weight:800;
+    }
+
+    .mini-badge{
+      margin-bottom:14px;
+    }
+
+    .hero-content h1{
+      font-size:4.2rem;
+      line-height:1.01;
+      margin:18px 0;
+      font-weight:900;
+      letter-spacing:-.048em;
+      max-width:720px;
+      word-break:break-word;
+    }
+
+    .hero-content h1 span{
+      color:var(--primary);
+      position:relative;
+    }
+
+    .hero-content h1 span::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:6px;
+      width:100%;
+      height:12px;
+      background:rgba(96,165,250,.18);
+      z-index:-1;
+      border-radius:20px;
+    }
+
+    .hero-text{
+      max-width:650px;
+      color:var(--muted);
+      font-size:1.08rem;
+      line-height:1.9;
+      margin-bottom:28px;
+      word-break:break-word;
     }
 
-    body.dark {
-      --bg: #020617;
-      --surface: rgba(15, 23, 42, 0.72);
-      --card: #0f172a;
-      --text: #f8fafc;
-      --muted: #94a3b8;
-      --primary: #60a5fa;
-      --primary-soft: rgba(96, 165, 250, 0.12);
-      --border: rgba(255,255,255,0.08);
-      --shadow: 0 10px 30px rgba(0,0,0,0.25);
-      --shadow-lg: 0 20px 60px rgba(0,0,0,0.35);
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-bottom:24px;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    .proof-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-bottom:26px;
     }
 
-    html {
-      scroll-behavior: smooth;
+    .proof-row span{
+      padding:8px 12px;
+      border-radius:999px;
+      background:var(--card-bg);
+      border:1px solid var(--border);
+      color:var(--text);
+      opacity:.9;
+      font-size:.88rem;
+      font-weight:700;
+      box-shadow:var(--shadow-soft);
     }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(37,99,235,0.10), transparent 28%),
-        radial-gradient(circle at top right, rgba(99,102,241,0.10), transparent 25%),
-        var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      transition: background 0.3s ease, color 0.3s ease;
+    .hero-metrics{
+      display:flex;
+      flex-wrap:wrap;
+      gap:16px;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
+    .metric-pill{
+      min-width:150px;
+      padding:16px 18px;
+      border-radius:18px;
+      background:var(--card-bg);
+      border:1px solid var(--border);
+      box-shadow:var(--shadow-soft);
+      transition:.3s ease;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
+    .metric-pill:hover{
+      transform:translateY(-5px);
+      box-shadow:var(--shadow);
     }
 
-    .container {
-      width: min(var(--container), calc(100% - 32px));
-      margin: 0 auto;
+    .metric-pill strong{
+      display:block;
+      font-size:1.02rem;
+      font-weight:900;
+      margin-bottom:4px;
     }
 
-    .section {
-      padding: 90px 0;
+    .metric-pill small{
+      color:var(--muted);
     }
 
-    .section-title {
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-      font-weight: 800;
-      text-align: center;
-      margin-bottom: 14px;
-      letter-spacing: -0.03em;
+    .hero-visual{
+      position:relative;
     }
 
-    .section-subtitle {
-      max-width: 680px;
-      margin: 0 auto 48px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 1rem;
+    .hero-photo-wrap{
+      position:relative;
+      max-width:560px;
+      margin-left:auto;
     }
 
-    /* Navbar */
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(14px);
-      background: rgba(255,255,255,0.65);
-      border-bottom: 1px solid var(--border);
+    .photo-card{
+      position:relative;
+      background:var(--card-grad);
+      border:1px solid var(--border);
+      border-radius:32px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      padding:14px;
+      animation:floatCard 6s ease-in-out infinite;
     }
 
-    body.dark .navbar {
-      background: rgba(2,6,23,0.7);
+    @keyframes floatCard{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-10px)}
     }
 
-    .nav-inner {
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
+    .photo-inner{
+      position:relative;
+      border-radius:24px;
+      overflow:hidden;
+      background:linear-gradient(135deg,#dbeafe,#eff6ff);
+      min-height:560px;
     }
 
-    .brand {
-      font-size: 1.15rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
+    .photo-inner img{
+      width:100%;
+      height:560px;
+      object-fit:cover;
     }
 
-    .brand span {
-      color: var(--primary);
+    .floating-card{
+      position:absolute;
+      background:rgba(255,255,255,.96);
+      border:1px solid var(--border);
+      box-shadow:var(--shadow-soft);
+      border-radius:20px;
+      padding:16px 18px;
+      backdrop-filter:blur(10px);
+      animation:floatMini 5s ease-in-out infinite;
     }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 26px;
+    body.dark .floating-card{
+      background:rgba(15,23,42,.92);
     }
 
-    .nav-links a {
-      color: var(--muted);
-      font-weight: 500;
-      transition: color 0.2s ease;
+    .floating-card strong{
+      display:block;
+      font-size:.98rem;
+      margin-bottom:4px;
     }
 
-    .nav-links a:hover {
-      color: var(--primary);
+    .floating-card small{
+      color:var(--muted);
+      line-height:1.5;
     }
 
-    .theme-toggle {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      border: 1px solid var(--border);
-      background: var(--card);
-      color: var(--text);
-      cursor: pointer;
-      box-shadow: var(--shadow);
-      transition: transform 0.2s ease;
+    .floating-card.card-1{
+      top:30px;
+      right:-25px;
     }
 
-    .theme-toggle:hover {
-      transform: translateY(-2px);
+    .floating-card.card-2{
+      bottom:40px;
+      left:-25px;
+      animation-delay:1s;
     }
 
-    /* Hero */
-    .hero {
-      padding: 80px 0 60px;
+    .floating-card.card-3{
+      bottom:110px;
+      right:-18px;
+      animation-delay:2s;
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      align-items: center;
-      gap: 50px;
+    @keyframes floatMini{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-8px)}
     }
 
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: var(--primary-soft);
-      color: var(--primary);
-      font-weight: 600;
-      margin-bottom: 24px;
-      border: 1px solid rgba(37, 99, 235, 0.15);
+    .stats-strip{
+      margin-top:36px;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
     }
 
-    .hero h1 {
-      font-size: clamp(2.4rem, 5vw, 4.5rem);
-      line-height: 1.05;
-      font-weight: 800;
-      letter-spacing: -0.05em;
-      margin-bottom: 18px;
+    .stat-box{
+      background:var(--card-bg);
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:22px;
+      box-shadow:var(--shadow-soft);
+      text-align:center;
+      transition:.3s ease;
     }
 
-    .hero h1 span {
-      color: var(--primary);
+    .stat-box:hover{
+      transform:translateY(-5px);
+      box-shadow:var(--shadow);
     }
 
-    .hero p {
-      color: var(--muted);
-      max-width: 640px;
-      font-size: 1.05rem;
-      margin-bottom: 28px;
+    .stat-box strong{
+      display:block;
+      font-size:2rem;
+      font-weight:900;
+      color:var(--primary);
+      margin-bottom:6px;
     }
 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 30px;
+    .stat-box span{
+      color:var(--muted);
+      font-weight:600;
+      font-size:.95rem;
+      word-break:break-word;
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 14px 22px;
-      border-radius: 14px;
-      font-weight: 600;
-      transition: all 0.25s ease;
+    .section{
+      padding:100px 0;
     }
 
-    .btn-primary {
-      background: var(--primary);
-      color: white;
-      box-shadow: 0 14px 30px rgba(37,99,235,0.28);
+    .soft{
+      background:var(--soft-bg);
     }
 
-    .btn-primary:hover {
-      transform: translateY(-3px);
+    .heading{
+      max-width:800px;
+      margin:0 auto 56px;
+      text-align:center;
     }
 
-    .btn-secondary {
-      border: 1px solid var(--border);
-      background: var(--card);
-      color: var(--text);
-      box-shadow: var(--shadow);
+    .heading h2{
+      margin:0 0 16px;
+      font-size:2.95rem;
+      line-height:1.06;
+      letter-spacing:-.035em;
+      word-break:break-word;
     }
 
-    .btn-secondary:hover {
-      transform: translateY(-3px);
+    .heading p{
+      color:var(--muted);
+      line-height:1.9;
+      font-size:1.05rem;
+      word-break:break-word;
     }
 
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:22px;
     }
 
-    .meta-box {
-      padding: 14px 16px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-      min-width: 150px;
+    .grid-2{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:22px;
     }
 
-    .meta-box strong {
-      display: block;
-      font-size: 1.1rem;
-      margin-bottom: 4px;
+    .card{
+      background:var(--card-bg);
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:30px;
+      box-shadow:var(--shadow-soft);
+      transition:.3s ease;
     }
 
-    .meta-box span {
-      color: var(--muted);
-      font-size: 0.92rem;
+    .card:hover{
+      transform:translateY(-6px);
+      box-shadow:var(--shadow);
     }
 
-    .hero-card {
-      position: relative;
-      background: linear-gradient(180deg, rgba(37,99,235,0.12), transparent), var(--card);
-      border: 1px solid var(--border);
-      border-radius: 30px;
-      padding: 26px;
-      box-shadow: var(--shadow-lg);
+    .feature-icon{
+      width:58px;
+      height:58px;
+      border-radius:18px;
+      background:linear-gradient(135deg,#dbeafe,#eff6ff);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.35rem;
+      margin-bottom:18px;
+      color:var(--primary);
     }
 
-    .profile-card {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
+    body.dark .feature-icon{
+      background:linear-gradient(135deg,#10213f,#0c1930);
     }
 
-    .profile-image-wrap {
-      border-radius: 24px;
-      overflow: hidden;
-      background: linear-gradient(135deg, rgba(37,99,235,0.18), rgba(99,102,241,0.10));
-      padding: 10px;
+    .card h3,
+    .card h4{
+      margin:0 0 10px;
+      word-break:break-word;
     }
 
-    .profile-image-wrap img {
-      width: 100%;
-      border-radius: 18px;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
+    .card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.85;
+      word-break:break-word;
     }
 
-    .mini-info {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
+    .services-list{
+      display:grid;
+      gap:16px;
+      margin-top:24px;
     }
 
-    .mini-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 16px;
+    .service-item{
+      display:flex;
+      align-items:flex-start;
+      gap:14px;
+      padding:16px 0;
+      border-bottom:1px solid rgba(148,163,184,.16);
     }
 
-    .mini-card p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 5px;
+    .service-item:last-child{
+      border-bottom:none;
     }
 
-    .mini-card strong {
-      font-size: 0.98rem;
+    .check{
+      width:30px;
+      height:30px;
+      border-radius:999px;
+      background:#dcfce7;
+      color:var(--success);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:900;
+      flex-shrink:0;
     }
 
-    /* About */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
+    .service-item strong{
+      display:block;
+      margin-bottom:6px;
+      word-break:break-word;
     }
 
-    .glass-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      border-radius: var(--radius);
-      padding: 28px;
-      backdrop-filter: blur(10px);
+    .project-card img{
+      width:100%;
+      aspect-ratio:16 / 10;
+      object-fit:cover;
+      border-radius:18px;
+      margin-bottom:18px;
+      border:1px solid var(--border);
+      transition:transform .5s ease;
     }
 
-    .glass-card h3 {
-      font-size: 1.2rem;
-      margin-bottom: 14px;
+    .project-card:hover img{
+      transform:scale(1.03);
     }
 
-    .glass-card p {
-      color: var(--muted);
+    .project-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin:14px 0 18px;
     }
 
-    /* Skills */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 18px;
+    .project-meta span{
+      padding:8px 12px;
+      border-radius:999px;
+      background:var(--soft);
+      color:var(--primary);
+      font-size:.82rem;
+      font-weight:700;
+      border:1px solid rgba(96,165,250,.25);
     }
 
-    .skill-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 24px 18px;
-      text-align: center;
-      box-shadow: var(--shadow);
-      transition: 0.25s ease;
+    .project-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:18px;
     }
 
-    .skill-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-lg);
+    .about-grid{
+      display:grid;
+      grid-template-columns:1fr .9fr;
+      gap:34px;
+      align-items:center;
     }
 
-    .skill-card i {
-      font-size: 2rem;
-      color: var(--primary);
-      margin-bottom: 14px;
+    .stack-box{
+      padding:18px;
+      border-radius:18px;
+      border:1px solid var(--border);
+      background:var(--card-grad);
+      margin-bottom:12px;
     }
 
-    .skill-card h4 {
-      font-size: 1rem;
-      margin-bottom: 6px;
+    .stack-box:last-child{
+      margin-bottom:0;
     }
 
-    .skill-card p {
-      font-size: 0.92rem;
-      color: var(--muted);
+    .stack-box small{
+      display:block;
+      color:var(--muted);
+      margin-bottom:8px;
+      font-weight:600;
     }
 
-    /* Projects */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-      gap: 24px;
+    .stack-box strong{
+      display:block;
+      font-size:1.2rem;
+      font-weight:900;
+      word-break:break-word;
     }
 
-    .project-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: 0.3s ease;
+    .testimonial-user strong,
+    .testimonial-user span{
+      display:block;
     }
 
-    .project-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-lg);
+    .testimonial-user span{
+      margin-top:4px;
+      color:var(--muted);
+      font-size:.92rem;
     }
 
-    .project-image {
-      overflow: hidden;
-      aspect-ratio: 16 / 10;
-      background: #e2e8f0;
+    .contact-card{
+      background:linear-gradient(135deg,#0f172a,#1e293b);
+      color:#fff;
+      border-radius:36px;
+      padding:44px;
+      display:grid;
+      grid-template-columns:1fr auto;
+      align-items:center;
+      gap:24px;
+      box-shadow:var(--shadow);
     }
 
-    .project-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.45s ease;
+    body.dark .contact-card{
+      background:linear-gradient(135deg,#0b1220,#111c30);
     }
 
-    .project-card:hover .project-image img {
-      transform: scale(1.05);
+    .contact-card h2{
+      margin:14px 0 14px;
+      font-size:2.5rem;
+      line-height:1.06;
+      letter-spacing:-.03em;
+      word-break:break-word;
     }
 
-    .project-content {
-      padding: 22px;
+    .contact-card p{
+      margin:0;
+      color:rgba(255,255,255,.82);
+      line-height:1.9;
+      max-width:660px;
+      word-break:break-word;
     }
 
-    .project-tag {
-      display: inline-block;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: var(--primary-soft);
-      color: var(--primary);
-      font-size: 0.84rem;
-      font-weight: 600;
-      margin-bottom: 14px;
+    .contact-actions{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
     }
 
-    .project-content h3 {
-      margin-bottom: 10px;
-      font-size: 1.15rem;
+    .contact-card .btn-light{
+      background:rgba(255,255,255,.08);
+      border-color:rgba(255,255,255,.18);
+      color:#fff;
     }
 
-    .project-content p {
-      color: var(--muted);
-      margin-bottom: 16px;
-      font-size: 0.96rem;
+    .socials{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:20px;
     }
 
-    .project-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
+    .socials a{
+      width:46px;
+      height:46px;
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--social-bg);
+      border:1px solid var(--social-border);
+      color:#fff;
+      font-size:1.1rem;
+      transition:.25s ease;
     }
 
-    .project-stack {
-      color: var(--muted);
-      font-size: 0.88rem;
+    .socials a:hover{
+      transform:translateY(-3px);
+      background:rgba(255,255,255,.14);
     }
 
-    .project-link {
-      color: var(--primary);
-      font-weight: 700;
+    .footer{
+      background:var(--footer-bg);
+      color:#fff;
+      padding:46px 0 24px;
+      margin-top:20px;
     }
 
-    /* Contact / socials */
-    .contact-box {
-      text-align: center;
-      max-width: 760px;
-      margin: 0 auto;
+    .footer-grid{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:30px;
+      flex-wrap:wrap;
+      padding-bottom:24px;
+      border-bottom:1px solid rgba(255,255,255,.08);
     }
 
-    .contact-box p {
-      color: var(--muted);
-      margin: 16px 0 28px;
+    .footer-brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
     }
 
-    .socials {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-top: 24px;
+    .footer-brand small{
+      display:block;
+      margin-top:4px;
+      color:var(--footer-sub);
     }
 
-    .socials a {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--card);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      font-size: 1.2rem;
-      transition: 0.25s ease;
+    .footer-text{
+      margin-top:16px;
+      color:var(--footer-text);
+      line-height:1.85;
+      max-width:450px;
+      word-break:break-word;
     }
 
-    .socials a:hover {
-      transform: translateY(-4px);
-      color: var(--primary);
+    .footer-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px;
     }
 
-    footer {
-      padding: 28px 0 40px;
-      text-align: center;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-      margin-top: 40px;
+    .footer-links a{
+      color:rgba(255,255,255,.82);
+      font-weight:600;
     }
 
-    /* Reveal animation */
-    .reveal {
-      opacity: 0;
-      transform: translateY(35px);
-      transition: 0.7s ease;
+    .footer-links a:hover{
+      color:#fff;
     }
 
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
+    .footer-bottom{
+      padding-top:18px;
+      color:var(--footer-bottom);
+      font-size:.92rem;
     }
 
-    /* Responsive */
-    @media (max-width: 992px) {
+    @media (max-width:1100px){
       .hero-grid,
-      .about-grid {
-        grid-template-columns: 1fr;
+      .about-grid,
+      .contact-card{
+        grid-template-columns:1fr;
       }
 
-      .hero {
-        padding-top: 50px;
+      .grid-3{
+        grid-template-columns:repeat(2,1fr);
       }
 
-      .hero-card {
-        max-width: 560px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
+      .stats-strip{
+        grid-template-columns:repeat(2,1fr);
       }
 
-      .section {
-        padding: 72px 0;
+      .hero-content h1{
+        font-size:3.3rem;
       }
 
-      .hero-actions {
-        flex-direction: column;
-        align-items: stretch;
+      .floating-card{
+        position:static;
+        margin-top:12px;
       }
 
-      .btn {
-        width: 100%;
-      }
-
-      .mini-info {
-        grid-template-columns: 1fr;
-      }
-
-      .meta-box {
-        width: 100%;
+      .hero-photo-wrap{
+        max-width:100%;
+        margin:0 auto;
       }
     }
 
-    @media (max-width: 520px) {
-      .hero h1 {
-        font-size: 2.2rem;
+    @media (max-width:1024px){
+      .hero-content{
+        text-align:center;
       }
 
-      .section-title {
-        font-size: 1.7rem;
+      .hero-text{
+        margin-left:auto;
+        margin-right:auto;
       }
 
-      .glass-card,
-      .project-content,
-      .hero-card {
-        padding: 20px;
+      .hero-actions,
+      .proof-row,
+      .hero-metrics{
+        justify-content:center;
+      }
+
+      .hero-photo-wrap{
+        max-width:520px;
+      }
+    }
+
+    @media (max-width:860px){
+      .nav-links,
+      .nav-actions{
+        display:none;
+      }
+
+      .menu-toggle{
+        display:block;
+      }
+
+      .grid-3,
+      .grid-2,
+      .stats-strip{
+        grid-template-columns:1fr;
+      }
+
+      .heading h2,
+      .contact-card h2{
+        font-size:2.2rem;
+      }
+
+      .hero-content h1{
+        font-size:2.35rem;
+      }
+
+      .hero-actions{
+        flex-direction:column;
+        align-items:stretch;
+      }
+
+      .hero-actions .btn,
+      .contact-actions .btn{
+        width:100%;
+      }
+
+      .photo-inner{
+        min-height:420px;
+      }
+
+      .photo-inner img{
+        height:420px;
+      }
+    }
+
+    @media (max-width:768px){
+      .container{
+        padding:0 16px;
+      }
+
+      .hero{
+        padding:70px 0 50px;
+      }
+
+      .brand-title{
+        font-size:1rem;
+      }
+
+      .brand-sub{
+        font-size:.72rem;
+      }
+
+      .heading h2,
+      .contact-card h2{
+        font-size:1.9rem;
+        line-height:1.15;
+      }
+
+      .card,
+      .contact-card,
+      .stat-box{
+        padding:20px;
+      }
+    }
+
+    @media (max-width:480px){
+      .hero-content h1{
+        font-size:1.9rem;
+      }
+
+      .hero-text{
+        font-size:.98rem;
+        line-height:1.7;
+      }
+
+      .badge,
+      .mini-badge{
+        font-size:.78rem;
+        padding:7px 12px;
+      }
+
+      .btn{
+        padding:13px 18px;
+        font-size:.95rem;
+      }
+
+      .photo-inner{
+        min-height:300px;
+      }
+
+      .photo-inner img{
+        height:300px;
       }
     }
   </style>
 </head>
 <body>
-
-  <nav class="navbar">
-    <div class="container nav-inner">
-      <a href="#" class="brand">M<span>.</span>Najemi</a>
-
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </div>
-
-      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-        <i class="fa-solid fa-moon"></i>
-      </button>
-    </div>
-  </nav>
-
-  <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="reveal active">
-          <div class="hero-badge">
-            <i class="fa-solid fa-code"></i>
-            Web Developer • WordPress • Rails
-          </div>
-
-          <h1>
-            I build <span>clean</span>, modern and high-converting websites.
-          </h1>
-
-          <p>
-            I'm Marouane Najemi, a web developer focused on creating fast, professional,
-            and user-friendly digital experiences with WordPress, HTML, CSS, JavaScript,
-            and Ruby on Rails.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="https://wa.me/212614705500" target="_blank">
-              <i class="fa-brands fa-whatsapp"></i>
-              Contact Me
-            </a>
-            <a class="btn btn-secondary" href="#projects">
-              <i class="fa-solid fa-briefcase"></i>
-              View Projects
-            </a>
-          </div>
-
-          <div class="hero-meta">
-            <div class="meta-box">
-              <strong>4+ Years</strong>
-              <span>Design & web experience</span>
-            </div>
-            <div class="meta-box">
-              <strong>WordPress</strong>
-              <span>Elementor & WooCommerce</span>
-            </div>
-            <div class="meta-box">
-              <strong>Frontend</strong>
-              <span>HTML, CSS, JavaScript</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="hero-card reveal">
-          <div class="profile-card">
-            <div class="profile-image-wrap">
-              <img src="mr.jpg" alt="Marouane Najemi">
-            </div>
-
-            <div class="mini-info">
-              <div class="mini-card">
-                <p>Speciality</p>
-                <strong>Professional Websites</strong>
-              </div>
-              <div class="mini-card">
-                <p>Focus</p>
-                <strong>UI, Speed & Conversion</strong>
-              </div>
-              <div class="mini-card">
-                <p>Main Stack</p>
-                <strong>WordPress / Rails</strong>
-              </div>
-              <div class="mini-card">
-                <p>Availability</p>
-                <strong>Freelance Projects</strong>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="section">
+  <section class="page">
+    <header class="navbar" id="top">
       <div class="container">
-        <h2 class="section-title reveal">About Me</h2>
-        <p class="section-subtitle reveal">
-          I help brands, businesses, and entrepreneurs turn ideas into polished digital products.
-        </p>
-
-        <div class="about-grid">
-          <div class="glass-card reveal">
-            <h3>Who I Am</h3>
-            <p>
-              I'm a web developer with strong experience in WordPress, Elementor,
-              HTML, CSS, JavaScript, and Ruby on Rails. I enjoy building modern interfaces
-              that look premium and feel easy to use.
-            </p>
-          </div>
-
-          <div class="glass-card reveal">
-            <h3>What I Do</h3>
-            <p>
-              I create business websites, e-commerce stores, landing pages, and custom web
-              solutions with a focus on clean UI, responsive design, and performance.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="skills" class="section">
-      <div class="container">
-        <h2 class="section-title reveal">Skills & Tools</h2>
-        <p class="section-subtitle reveal">
-          Technologies and platforms I use to build reliable and modern websites.
-        </p>
-
-        <div class="skills-grid">
-          <div class="skill-card reveal">
-            <i class="fa-brands fa-html5"></i>
-            <h4>HTML & CSS</h4>
-            <p>Clean, responsive and structured frontend development.</p>
-          </div>
-
-          <div class="skill-card reveal">
-            <i class="fa-brands fa-js"></i>
-            <h4>JavaScript</h4>
-            <p>Interactive experiences and dynamic frontend behavior.</p>
-          </div>
-
-          <div class="skill-card reveal">
-            <i class="fa-brands fa-bootstrap"></i>
-            <h4>Bootstrap</h4>
-            <p>Fast and responsive layouts with modern UI components.</p>
-          </div>
-
-          <div class="skill-card reveal">
-            <i class="fa-brands fa-figma"></i>
-            <h4>Figma</h4>
-            <p>UI inspiration, structure planning and visual design ideas.</p>
-          </div>
-
-          <div class="skill-card reveal">
-            <i class="fa-brands fa-wordpress"></i>
-            <h4>WordPress</h4>
-            <p>Business websites, blogs, landing pages and WooCommerce.</p>
-          </div>
-
-          <div class="skill-card reveal">
-            <i class="fa-solid fa-gem"></i>
-            <h4>Ruby on Rails</h4>
-            <p>Building custom web apps and SaaS-style platforms.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects" class="section">
-      <div class="container">
-        <h2 class="section-title reveal">Featured Projects</h2>
-        <p class="section-subtitle reveal">
-          A selection of websites I've built for businesses, e-commerce and content platforms.
-        </p>
-
-        <div class="projects-grid">
-          <article class="project-card reveal">
-            <div class="project-image">
-              <img src="azbabycare.png" alt="AZ Baby Care project">
+        <div class="nav-inner">
+          <a href="#top" class="brand">
+            <div class="brand-logo">M</div>
+            <div>
+              <span class="brand-title">Marouane Najemi</span>
+              <small class="brand-sub">Junior Full Stack Developer • WordPress Developer</small>
             </div>
-            <div class="project-content">
-              <span class="project-tag">Business Website</span>
-              <h3>AZ Baby Care</h3>
-              <p>Modern WordPress website built for a professional and trustworthy brand presence.</p>
-              <div class="project-footer">
-                <span class="project-stack">WordPress • Elementor</span>
-                <a class="project-link" href="https://azbabycare.ma/" target="_blank">Live Demo</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card reveal">
-            <div class="project-image">
-              <img src="oimaroc.png" alt="Oi Maroc store project">
-            </div>
-            <div class="project-content">
-              <span class="project-tag">E-commerce</span>
-              <h3>Oi Maroc</h3>
-              <p>Online store experience designed for product presentation and WooCommerce sales flow.</p>
-              <div class="project-footer">
-                <span class="project-stack">WordPress • WooCommerce</span>
-                <a class="project-link" href="https://oimaroc.com/" target="_blank">Live Demo</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card reveal">
-            <div class="project-image">
-              <img src="cosmitc.png" alt="Cos Mell project">
-            </div>
-            <div class="project-content">
-              <span class="project-tag">Brand Website</span>
-              <h3>Cos Mell</h3>
-              <p>Elegant business website with a clean visual style and professional structure.</p>
-              <div class="project-footer">
-                <span class="project-stack">WordPress • Elementor</span>
-                <a class="project-link" href="https://www.cos-mell.ma/" target="_blank">Live Demo</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card reveal">
-            <div class="project-image">
-              <img src="recitelive.png" alt="Recette Facile project">
-            </div>
-            <div class="project-content">
-              <span class="project-tag">Content Platform</span>
-              <h3>RecetteFacile.live</h3>
-              <p>Recipe blog built for readable content, category browsing and user-friendly experience.</p>
-              <div class="project-footer">
-                <span class="project-stack">WordPress • Blog</span>
-                <a class="project-link" href="https://recettefacile.live/" target="_blank">Live Demo</a>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section">
-      <div class="container">
-        <div class="glass-card contact-box reveal">
-          <h2 class="section-title" style="margin-bottom: 0;">Let’s Work Together</h2>
-          <p>
-            Need a professional website, landing page, e-commerce store, or custom web solution?
-            Let’s discuss your project.
-          </p>
-
-          <a class="btn btn-primary" href="https://wa.me/212614705500" target="_blank">
-            <i class="fa-brands fa-whatsapp"></i>
-            Start a Conversation
           </a>
 
-          <div class="socials">
-            <a href="https://web.facebook.com/marwane.najemi/" target="_blank" aria-label="Facebook">
-              <i class="fa-brands fa-facebook-f"></i>
-            </a>
-            <a href="https://github.com/marouanenajemi-design" target="_blank" aria-label="GitHub">
-              <i class="fa-brands fa-github"></i>
-            </a>
-            <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
-              <i class="fa-brands fa-linkedin-in"></i>
-            </a>
+          <nav class="nav-links">
+            <a href="#skills">Skills</a>
+            <a href="#services">Services</a>
+            <a href="#projects">Projects</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+          </nav>
+
+          <div class="nav-actions">
+            <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            <a href="https://github.com/marouanenajemi-design" target="_blank" class="btn btn-light">GitHub</a>
+            <a href="https://wa.me/212614705500" target="_blank" class="btn btn-primary">Contact Me</a>
+          </div>
+
+          <button class="menu-toggle" id="menuToggle">☰</button>
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+          <div class="mobile-top-actions">
+            <button id="themeToggleMobile" class="theme-toggle" aria-label="Toggle theme mobile">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+          </div>
+
+          <a href="#skills">Skills</a>
+          <a href="#services">Services</a>
+          <a href="#projects">Projects</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+
+          <div class="mobile-actions">
+            <a href="https://github.com/marouanenajemi-design" target="_blank" class="btn btn-light">GitHub</a>
+            <a href="https://wa.me/212614705500" target="_blank" class="btn btn-primary">Contact Me</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
+      <div class="grid-overlay"></div>
+
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content reveal">
+            <span class="badge">Junior Full Stack Developer • WordPress Developer</span>
+
+            <h1>
+              I create
+              <span>modern, clean</span>
+              and professional web experiences.
+            </h1>
+
+            <p class="hero-text">
+              I’m Marouane Najemi, a Junior Full Stack Developer and WordPress Developer specialized in
+              building modern websites, landing pages, e-commerce stores, and web applications using
+              HTML, CSS, JavaScript, Bootstrap, WordPress, and Ruby on Rails.
+            </p>
+
+            <div class="hero-actions">
+              <a href="https://wa.me/212614705500" target="_blank" class="btn btn-primary">Contact Me</a>
+              <a href="#projects" class="btn btn-outline">View Projects</a>
+            </div>
+
+            <div class="proof-row">
+              <span>Clean UI</span>
+              <span>Responsive Design</span>
+              <span>Business-focused websites</span>
+            </div>
+
+            <div class="hero-metrics">
+              <div class="metric-pill">
+                <strong>WordPress</strong>
+                <small>Elementor & WooCommerce</small>
+              </div>
+              <div class="metric-pill">
+                <strong>Frontend</strong>
+                <small>HTML, CSS, JavaScript</small>
+              </div>
+              <div class="metric-pill">
+                <strong>Rails</strong>
+                <small>Custom web apps</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual reveal">
+            <div class="hero-photo-wrap">
+              <div class="photo-card">
+                <div class="photo-inner">
+                  <img src="mr.jpg" alt="Marouane Najemi">
+                </div>
+              </div>
+
+              <div class="floating-card card-1">
+                <strong>Professional UI</strong>
+                <small>Clean layouts with a premium presentation style.</small>
+              </div>
+
+              <div class="floating-card card-2">
+                <strong>WordPress Developer</strong>
+                <small>Business websites, landing pages and WooCommerce stores.</small>
+              </div>
+
+              <div class="floating-card card-3">
+                <strong>Junior Full Stack</strong>
+                <small>Frontend + Rails solutions for real client projects.</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-strip">
+          <div class="stat-box reveal">
+            <strong class="counter" data-target="4">0</strong>
+            <span>Years of experience</span>
+          </div>
+          <div class="stat-box reveal">
+            <strong class="counter" data-target="20">0</strong>
+            <span>Projects completed</span>
+          </div>
+          <div class="stat-box reveal">
+            <strong class="counter" data-target="6">0</strong>
+            <span>Main skills</span>
+          </div>
+          <div class="stat-box reveal">
+            <strong class="counter" data-target="100">0</strong>
+            <span>Responsive design focus</span>
           </div>
         </div>
       </div>
     </section>
-  </main>
 
-  <footer>
-    © 2026 · Marouane Najemi · All rights reserved.
-  </footer>
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="heading reveal">
+          <span class="mini-badge">Skills</span>
+          <h2>The tools I use to build polished digital products</h2>
+          <p>
+            My workflow combines clean design, practical development, and modern tools
+            to deliver strong websites and web applications.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card reveal">
+            <div class="feature-icon"><i class="fa-brands fa-html5"></i></div>
+            <h3>HTML & CSS</h3>
+            <p>Structured and responsive frontend development with attention to spacing, layout, and visual quality.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="feature-icon"><i class="fa-brands fa-js"></i></div>
+            <h3>JavaScript</h3>
+            <p>Interactive elements and dynamic user experiences that improve modern website usability.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="feature-icon"><i class="fa-brands fa-bootstrap"></i></div>
+            <h3>Bootstrap</h3>
+            <p>Fast and effective responsive interfaces built with strong layout foundations.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="feature-icon"><i class="fa-brands fa-figma"></i></div>
+            <h3>Figma</h3>
+            <p>UI inspiration and layout planning for websites that feel modern and professional.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="feature-icon"><i class="fa-brands fa-wordpress"></i></div>
+            <h3>WordPress</h3>
+            <p>Professional websites, blogs, landing pages, and WooCommerce stores tailored for businesses.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="feature-icon"><i class="fa-solid fa-gem"></i></div>
+            <h3>Ruby on Rails</h3>
+            <p>Custom web applications and SaaS-style solutions with solid structure and scalability.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft" id="services">
+      <div class="container">
+        <div class="about-grid">
+          <div class="reveal">
+            <span class="mini-badge">Services</span>
+            <h2 style="font-size:2.9rem;line-height:1.06;letter-spacing:-.035em;margin:0 0 16px;">Services I offer for brands and businesses</h2>
+            <p style="color:var(--muted);line-height:1.9;font-size:1.05rem;margin:0;">
+              I help businesses build a stronger online presence with websites that look premium,
+              work smoothly, and support real goals.
+            </p>
+
+            <div class="services-list">
+              <div class="service-item">
+                <div class="check">✓</div>
+                <div>
+                  <strong>Business Websites</strong>
+                  <p>Professional websites for companies, agencies, and personal brands.</p>
+                </div>
+              </div>
+
+              <div class="service-item">
+                <div class="check">✓</div>
+                <div>
+                  <strong>Landing Pages</strong>
+                  <p>Modern pages focused on presentation, conversion, and clear messaging.</p>
+                </div>
+              </div>
+
+              <div class="service-item">
+                <div class="check">✓</div>
+                <div>
+                  <strong>E-commerce Stores</strong>
+                  <p>WooCommerce-based online stores with organized product presentation.</p>
+                </div>
+              </div>
+
+              <div class="service-item">
+                <div class="check">✓</div>
+                <div>
+                  <strong>Custom Web Apps</strong>
+                  <p>Ruby on Rails solutions for projects that need more than a simple website.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="reveal">
+            <div class="card">
+              <h3 style="margin-bottom:18px;">Service Highlights</h3>
+
+              <div class="stack-box">
+                <small>Design approach</small>
+                <strong>Minimal and premium</strong>
+              </div>
+
+              <div class="stack-box">
+                <small>Development style</small>
+                <strong>Clean and responsive</strong>
+              </div>
+
+              <div class="stack-box">
+                <small>Main platforms</small>
+                <strong>WordPress and Rails</strong>
+              </div>
+
+              <div class="stack-box">
+                <small>Project goal</small>
+                <strong>Professional online presence</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="heading reveal">
+          <span class="mini-badge">Projects</span>
+          <h2>Selected projects from my portfolio</h2>
+          <p>
+            A selection of websites and digital work built for businesses, e-commerce,
+            and content-based platforms.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card project-card reveal">
+            <img src="azbabycare.png" alt="AZ Baby Care">
+            <h3>AZ Baby Care</h3>
+            <p>Modern business website built with WordPress and Elementor for a clean and trustworthy online presence.</p>
+            <div class="project-meta">
+              <span>WordPress</span>
+              <span>Elementor</span>
+              <span>Business Site</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://azbabycare.ma/" target="_blank" class="btn btn-primary">Live Demo</a>
+            </div>
+          </article>
+
+          <article class="card project-card reveal">
+            <img src="oimaroc.png" alt="Oi Maroc">
+            <h3>Oi Maroc</h3>
+            <p>E-commerce store built with WooCommerce and designed for a clear shopping and product browsing experience.</p>
+            <div class="project-meta">
+              <span>WordPress</span>
+              <span>WooCommerce</span>
+              <span>E-commerce</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://oimaroc.com/" target="_blank" class="btn btn-primary">Live Demo</a>
+            </div>
+          </article>
+
+          <article class="card project-card reveal">
+            <img src="cosmitc.png" alt="Cos Mell">
+            <h3>Cos Mell</h3>
+            <p>Elegant business website with a refined structure and visual identity designed to look professional.</p>
+            <div class="project-meta">
+              <span>WordPress</span>
+              <span>Elementor</span>
+              <span>Brand Website</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://www.cos-mell.ma/" target="_blank" class="btn btn-primary">Live Demo</a>
+            </div>
+          </article>
+
+          <article class="card project-card reveal">
+            <img src="recitelive.png" alt="RecetteFacile.live">
+            <h3>RecetteFacile.live</h3>
+            <p>Recipe blog built to present content in a simple, readable, and organized format.</p>
+            <div class="project-meta">
+              <span>WordPress</span>
+              <span>Blog</span>
+              <span>Recipes</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://recettefacile.live/" target="_blank" class="btn btn-primary">Live Demo</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft" id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="reveal">
+            <span class="mini-badge">About</span>
+            <h2 style="font-size:2.9rem;line-height:1.06;letter-spacing:-.035em;margin:0 0 16px;">A junior developer focused on clean design and practical results</h2>
+            <p style="color:var(--muted);line-height:1.9;font-size:1.05rem;margin:0 0 28px;">
+              I enjoy building websites and digital products that feel modern, organized,
+              and visually strong. My goal is to turn ideas into web experiences that support
+              brands, products, and businesses in a professional way.
+            </p>
+
+            <div class="services-list">
+              <div class="service-item">
+                <div class="check">✓</div>
+                <div>
+                  <strong>Professional presentation</strong>
+                  <p>Clean and polished UI that helps businesses look more serious online.</p>
+                </div>
+              </div>
+
+              <div class="service-item">
+                <div class="check">✓</div>
+                <div>
+                  <strong>Responsive execution</strong>
+                  <p>Websites that work smoothly across desktop, tablet, and mobile screens.</p>
+                </div>
+              </div>
+
+              <div class="service-item">
+                <div class="check">✓</div>
+                <div>
+                  <strong>Business-focused work</strong>
+                  <p>I create websites meant to support real products, services, and client goals.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="reveal">
+            <div class="card">
+              <h3 style="margin-bottom:18px;">Profile Summary</h3>
+
+              <div class="stack-box">
+                <small>Main field</small>
+                <strong>Junior Full Stack Development</strong>
+              </div>
+
+              <div class="stack-box">
+                <small>Core stack</small>
+                <strong>WordPress, Frontend, Rails</strong>
+              </div>
+
+              <div class="stack-box">
+                <small>Design style</small>
+                <strong>Minimal and premium</strong>
+              </div>
+
+              <div class="stack-box">
+                <small>Project focus</small>
+                <strong>Clean and conversion-ready</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="heading reveal">
+          <span class="mini-badge">Why Work With Me</span>
+          <h2>What clients can expect from my work</h2>
+          <p>
+            My focus is on clean structure, strong visual presentation, and practical results.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card reveal">
+            <p>
+              “Clean layouts, modern structure, and a premium visual style that helps businesses look more serious online.”
+            </p>
+            <div class="testimonial-user" style="margin-top:18px;">
+              <strong>Professional Design</strong>
+              <span>Modern website presentation</span>
+            </div>
+          </div>
+
+          <div class="card reveal">
+            <p>
+              “A strong mix of WordPress flexibility and custom development skills for real client projects.”
+            </p>
+            <div class="testimonial-user" style="margin-top:18px;">
+              <strong>Practical Development</strong>
+              <span>Business-ready solutions</span>
+            </div>
+          </div>
+
+          <div class="card reveal">
+            <p>
+              “Focused on building websites that are not only beautiful, but also structured and easy to use.”
+            </p>
+            <div class="testimonial-user" style="margin-top:18px;">
+              <strong>User Experience</strong>
+              <span>Clear and polished delivery</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-card reveal">
+          <div>
+            <span class="mini-badge">Contact</span>
+            <h2>Ready to build a professional website for your business?</h2>
+            <p>
+              Whether you need a landing page, business website, e-commerce store, or custom web app,
+              let’s discuss your project and create something clean, modern, and effective.
+            </p>
+
+            <div class="socials">
+              <a href="https://web.facebook.com/marwane.najemi/" target="_blank" aria-label="Facebook">
+                <i class="fa-brands fa-facebook-f"></i>
+              </a>
+              <a href="https://github.com/marouanenajemi-design" target="_blank" aria-label="GitHub">
+                <i class="fa-brands fa-github"></i>
+              </a>
+              <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+                <i class="fa-brands fa-linkedin-in"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-actions">
+            <a href="https://wa.me/212614705500" target="_blank" class="btn btn-primary">Contact Me</a>
+            <a href="mailto:yourmail@example.com" class="btn btn-light">yourmail@example.com</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-brand">
+              <div class="brand-logo">M</div>
+              <div>
+                <strong>Marouane Najemi</strong>
+                <small>Junior Full Stack Developer • WordPress Developer</small>
+              </div>
+            </div>
+            <p class="footer-text">
+              A premium portfolio built to showcase clean design, WordPress projects,
+              modern web development, and business-focused digital experiences.
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <a href="#skills">Skills</a>
+            <a href="#services">Services</a>
+            <a href="#projects">Projects</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span>© 2026 Marouane Najemi. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  </section>
 
   <script>
-    const toggleBtn = document.getElementById('theme-toggle');
-    const icon = toggleBtn.querySelector('i');
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggle = document.getElementById("menuToggle");
+      const menu = document.getElementById("mobileMenu");
 
-    if (localStorage.getItem('theme') === 'dark') {
-      document.body.classList.add('dark');
-      icon.classList.replace('fa-moon', 'fa-sun');
-    }
+      if (toggle && menu) {
+        toggle.addEventListener("click", function () {
+          menu.classList.toggle("open");
+        });
 
-    toggleBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-
-      if (document.body.classList.contains('dark')) {
-        icon.classList.replace('fa-moon', 'fa-sun');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        icon.classList.replace('fa-sun', 'fa-moon');
-        localStorage.setItem('theme', 'light');
+        menu.querySelectorAll("a").forEach(function(link) {
+          link.addEventListener("click", function () {
+            menu.classList.remove("open");
+          });
+        });
       }
-    });
 
-    const reveals = document.querySelectorAll('.reveal');
+      const body = document.body;
+      const themeToggle = document.getElementById("themeToggle");
+      const themeToggleMobile = document.getElementById("themeToggleMobile");
 
-    const revealOnScroll = () => {
-      const triggerBottom = window.innerHeight - 80;
+      function updateThemeIcons() {
+        const isDark = body.classList.contains("dark");
+        const iconClass = isDark ? "fa-sun" : "fa-moon";
 
-      reveals.forEach(el => {
-        const top = el.getBoundingClientRect().top;
-        if (top < triggerBottom) {
-          el.classList.add('active');
+        if (themeToggle) {
+          themeToggle.innerHTML = `<i class="fa-solid ${iconClass}"></i>`;
         }
-      });
-    };
+        if (themeToggleMobile) {
+          themeToggleMobile.innerHTML = `<i class="fa-solid ${iconClass}"></i>`;
+        }
+      }
 
-    window.addEventListener('scroll', revealOnScroll);
-    revealOnScroll();
+      function applyTheme(theme) {
+        if (theme === "dark") {
+          body.classList.add("dark");
+        } else {
+          body.classList.remove("dark");
+        }
+        localStorage.setItem("theme", theme);
+        updateThemeIcons();
+      }
+
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") {
+        applyTheme("dark");
+      } else {
+        applyTheme("light");
+      }
+
+      if (themeToggle) {
+        themeToggle.addEventListener("click", function () {
+          applyTheme(body.classList.contains("dark") ? "light" : "dark");
+        });
+      }
+
+      if (themeToggleMobile) {
+        themeToggleMobile.addEventListener("click", function () {
+          applyTheme(body.classList.contains("dark") ? "light" : "dark");
+        });
+      }
+
+      const reveals = document.querySelectorAll(".reveal");
+
+      function revealOnScroll() {
+        const triggerBottom = window.innerHeight * 0.88;
+
+        reveals.forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < triggerBottom) {
+            el.classList.add("active");
+          }
+        });
+      }
+
+      window.addEventListener("scroll", revealOnScroll);
+      revealOnScroll();
+
+      const counters = document.querySelectorAll(".counter");
+      let started = false;
+
+      function runCounters() {
+        if (started) return;
+
+        const statsSection = document.querySelector(".stats-strip");
+        if (!statsSection) return;
+
+        const rect = statsSection.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) {
+          started = true;
+
+          counters.forEach(counter => {
+            const target = +counter.getAttribute("data-target");
+            let count = 0;
+            const speed = Math.max(20, 120 / target);
+
+            const updateCount = () => {
+              if (count < target) {
+                count++;
+                counter.innerText = count;
+                setTimeout(updateCount, speed);
+              } else {
+                counter.innerText = target;
+              }
+            };
+
+            updateCount();
+          });
+        }
+      }
+
+      window.addEventListener("scroll", runCounters);
+      runCounters();
+    });
   </script>
 </body>
 </html>
